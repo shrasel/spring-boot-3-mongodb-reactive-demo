@@ -14,8 +14,8 @@ This project demonstrates how to build a simple Spring Boot 3 application using 
 1. Clone the repository:
 
    ```sh
-   git clone https://github.com/shrasel/spring-boot-3-mongodb-reactive.git
-   cd spring-boot-3-mongodb-reactive
+   git clone git@github.com:shrasel/spring-boot-3-mongodb-reactive-demo.git
+   cd spring-boot-3-mongodb-reactive-demo
 
 ### Configure MongoDB: ###
 
@@ -27,7 +27,19 @@ Make sure you have a MongoDB server running locally or update the MongoDB connec
 mvn spring-boot:run
 ```
 
-Access the application:
+Dependencies
+
+```
+<dependency>
+   <groupId>org.springframework.boot</groupId>
+   <artifactId>spring-boot-starter-data-mongodb-reactive</artifactId>
+</dependency>
+<dependency>
+   <groupId>org.springframework.boot</groupId>
+   <artifactId>spring-boot-starter-webflux</artifactId>
+</dependency>
+```
+**Access the application:**
 
 The application will be available at http://localhost:8080. You can use tools like curl, Postman, or your web browser to interact with the API.
 
