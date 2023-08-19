@@ -8,6 +8,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import java.time.LocalDateTime;
+import java.util.Date;
+
 @SpringBootApplication
 public class ReactiveDemoApplication {
 
@@ -26,6 +29,7 @@ public class ReactiveDemoApplication {
 						.lastName(faker.name().lastName())
 						.age(faker.random().nextInt(16,45))
 						.gender(faker.demographic().sex())
+								.createdAt(LocalDateTime.now())
 						.build()).subscribe();
 			}
 		};

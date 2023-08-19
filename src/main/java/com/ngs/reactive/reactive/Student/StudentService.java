@@ -13,6 +13,10 @@ public class StudentService {
     @Autowired
     private final StudentRepository studentRepository;
 
+    public Mono<Student> createStudent(Student student) {
+        return studentRepository.save(student);
+    }
+
     Flux<Student> findAll(){
         return studentRepository.findAll();
     }
@@ -27,5 +31,14 @@ public class StudentService {
 
     public Mono<Student> save(Student student){
         return studentRepository.save(student);
+    }
+
+    public Mono<Student> update(String id, Student student){
+        student.setId(id);
+        return studentRepository.save(student);
+    }
+
+    public Mono<Void> delete(String id){
+        return studentRepository.deleteById(id);
     }
 }
