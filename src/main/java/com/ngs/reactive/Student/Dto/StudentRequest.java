@@ -1,4 +1,4 @@
-package com.ngs.reactive.reactive.Student.Dto;
+package com.ngs.reactive.Student.Dto;
 
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;

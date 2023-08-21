@@ -1,14 +1,13 @@
-package com.ngs.reactive.reactive.Student;
+package com.ngs.reactive.Student;
 
-import com.ngs.reactive.reactive.Student.Dto.StudentResponse;
+import com.ngs.reactive.Student.Dto.StudentRequest;
+import com.ngs.reactive.Student.Dto.StudentResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-
-import java.time.Duration;
 
 @RestController
 @RequestMapping("/api/v1/students")
@@ -18,7 +17,15 @@ public class StudentController {
     private final StudentService studentService;
 
     @PostMapping
-    public Mono<StudentResponse> createStudent(@RequestBody Student student) {
+    public Mono<StudentResponse> createStudent(@RequestBody StudentRequest studentRequest) {
+       Student student = Student.builder()
+               .studentId(studentRequest.getStudentId())
+               .firstName(studentRequest.getFirstName())
+               .lastName(studentRequest.getLastName())
+               .age(studentRequest.getAge())
+               .gender(studentRequest.getGender())
+               .createdAt(studentRequest.getCreatedAt())
+               .build();
         return studentService.save(student);
     }
 
@@ -39,8 +46,8 @@ public class StudentController {
     }
 
     @PutMapping("/{id}")
-    public Mono<StudentResponse> updateStudent(@PathVariable String id, @RequestBody Student student) {
-        return studentService.update(id, student);
+    public Mono<StudentResponse> updateStudent(@PathVariable String id, @RequestBody StudentRequest studentRequest) {
+        return studentService.update(id, studentRequest);
     }
 
     @DeleteMapping("/{id}")

@@ -1,4 +1,4 @@
-package com.ngs.reactive.reactive;
+package com.ngs.reactive;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

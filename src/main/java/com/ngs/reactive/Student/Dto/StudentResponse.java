@@ -1,26 +1,18 @@
-package com.ngs.reactive.reactive.Student;
+package com.ngs.reactive.Student.Dto;
 
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.MongoId;
-import org.springframework.data.mongodb.repository.Update;
-import org.springframework.lang.NonNull;
 
 import java.time.LocalDateTime;
 
-@Document(collection = "students")
 @Setter
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Student {
+public class StudentResponse {
 
-
-    @Id
     private String id;
 
     private Integer studentId;

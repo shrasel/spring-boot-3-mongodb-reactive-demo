@@ -1,15 +1,14 @@
-package com.ngs.reactive.reactive;
+package com.ngs.reactive;
 
 import com.github.javafaker.Faker;
-import com.ngs.reactive.reactive.Student.Student;
-import com.ngs.reactive.reactive.Student.StudentService;
+import com.ngs.reactive.Student.Student;
+import com.ngs.reactive.Student.StudentService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 
 @SpringBootApplication
 public class ReactiveDemoApplication {

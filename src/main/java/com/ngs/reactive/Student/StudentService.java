@@ -1,11 +1,14 @@
-package com.ngs.reactive.reactive.Student;
+package com.ngs.reactive.Student;
 
-import com.ngs.reactive.reactive.Student.Dto.StudentResponse;
+import com.ngs.reactive.Student.Dto.StudentRequest;
+import com.ngs.reactive.Student.Dto.StudentResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+
+import java.time.LocalDateTime;
 
 @Service
 @RequiredArgsConstructor
@@ -44,8 +47,16 @@ public class StudentService {
         return studentRepository.findByStudentId(id);
     }
 
-    public Mono<StudentResponse> update(String id, Student student){
-        student.setId(id);
+    public Mono<StudentResponse> update(String id, StudentRequest studentRequest){
+        Student student = Student.builder()
+                .studentId(studentRequest.getStudentId())
+                .firstName(studentRequest.getFirstName())
+                .lastName(studentRequest.getLastName())
+                .age(studentRequest.getAge())
+                .gender(studentRequest.getGender())
+                .updatedAt(LocalDateTime.now())
+                .build();
+            student.setId(id);
         return studentRepository.save(student).map(this::mapToStudentResponse);
     }
 
