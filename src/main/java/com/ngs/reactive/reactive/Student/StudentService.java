@@ -1,5 +1,6 @@
 package com.ngs.reactive.reactive.Student;
 
+import com.ngs.reactive.reactive.Student.Dto.StudentResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,15 +18,29 @@ public class StudentService {
         return studentRepository.save(student);
     }
 
-    Flux<Student> findAll(){
-        return studentRepository.findAll();
+    public Flux<StudentResponse> findAll() {
+        return studentRepository.findAll()
+                .map(this::mapToStudentResponse);
+    }
+
+    private StudentResponse mapToStudentResponse(Student student) {
+        return StudentResponse.builder()
+                .id(student.getId())
+                .studentId(student.getStudentId())
+                .firstName(student.getFirstName())
+                .lastName(student.getLastName())
+                .age(student.getAge())
+                .createdAt(student.getCreatedAt())
+                .gender(student.getGender())
+                .updatedAt(student.getUpdatedAt())
+                .build();
     }
 
     Mono<Student> findById(String id){
         return studentRepository.findById(id);
     }
 
-    Mono<Student> findByStudentId(Integer id){
+    Mono<StudentResponse> findByStudentId(Integer id){
         return studentRepository.findByStudentId(id);
     }
 

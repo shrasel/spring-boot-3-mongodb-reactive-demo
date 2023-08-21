@@ -1,5 +1,6 @@
 package com.ngs.reactive.reactive.Student;
 
+import com.ngs.reactive.reactive.Student.Dto.StudentResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -23,7 +24,7 @@ public class StudentController {
     }
 
     @GetMapping
-    Flux<Student> findAll(){
+    Flux<StudentResponse> findAll(){
         return studentService.findAll(); //.delayElements(Duration.ofSeconds(1));
     }
 
@@ -33,7 +34,7 @@ public class StudentController {
     }
 
     @GetMapping("/studentId/{id}")
-    Mono<Student> getByStudentId(@PathVariable Integer id){
+    Mono<StudentResponse> getByStudentId(@PathVariable Integer id){
         return studentService.findByStudentId(id);
     }
 
