@@ -14,8 +14,8 @@ public class StudentService {
     @Autowired
     private final StudentRepository studentRepository;
 
-    public Mono<Student> createStudent(Student student) {
-        return studentRepository.save(student);
+    public Mono<StudentResponse> save(Student student){
+        return studentRepository.save(student).map(this::mapToStudentResponse);
     }
 
     public Flux<StudentResponse> findAll() {
@@ -36,21 +36,17 @@ public class StudentService {
                 .build();
     }
 
-    Mono<Student> findById(String id){
-        return studentRepository.findById(id);
+    Mono<StudentResponse> findById(String id){
+        return studentRepository.findById(id).map(this::mapToStudentResponse);
     }
 
     Mono<StudentResponse> findByStudentId(Integer id){
         return studentRepository.findByStudentId(id);
     }
 
-    public Mono<Student> save(Student student){
-        return studentRepository.save(student);
-    }
-
-    public Mono<Student> update(String id, Student student){
+    public Mono<StudentResponse> update(String id, Student student){
         student.setId(id);
-        return studentRepository.save(student);
+        return studentRepository.save(student).map(this::mapToStudentResponse);
     }
 
     public Mono<Void> delete(String id){

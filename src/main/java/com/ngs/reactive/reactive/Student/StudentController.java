@@ -17,11 +17,11 @@ public class StudentController {
 
     private final StudentService studentService;
 
-
     @PostMapping
-    public Mono<Student> createStudent(@RequestBody Student student){
+    public Mono<StudentResponse> createStudent(@RequestBody Student student) {
         return studentService.save(student);
     }
+
 
     @GetMapping
     Flux<StudentResponse> findAll(){
@@ -29,7 +29,7 @@ public class StudentController {
     }
 
     @GetMapping("/{id}")
-    Mono<Student> getById(@PathVariable String id){
+    Mono<StudentResponse> getById(@PathVariable String id){
         return studentService.findById(id);
     }
 
@@ -39,7 +39,7 @@ public class StudentController {
     }
 
     @PutMapping("/{id}")
-    public Mono<Student> updateStudent(@PathVariable String id, @RequestBody Student student) {
+    public Mono<StudentResponse> updateStudent(@PathVariable String id, @RequestBody Student student) {
         return studentService.update(id, student);
     }
 
