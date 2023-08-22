@@ -17,7 +17,7 @@ public class ReactiveDemoApplication {
 		SpringApplication.run(ReactiveDemoApplication.class, args);
 	}
 
-	@Bean
+	/* @Bean
 	public CommandLineRunner commandLineRunner(StudentService studentService){
 		Faker faker = new Faker();
 		return args -> {
@@ -32,6 +32,6 @@ public class ReactiveDemoApplication {
 						.build()).subscribe();
 			}
 		};
-	}
+	} */
 
 }
